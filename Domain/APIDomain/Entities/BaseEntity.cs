@@ -6,13 +6,16 @@ namespace APIDomain.Entities
     public abstract class BaseEntity
     {
         [Key]
-        public Guid Id { get; protected set; }
-        public DateTime CreateDate { get; private set; }
-        public DateTime? UpdateDate { get; private set; }
+        public Guid Id { get; set; }
+        public DateTime CreateDate { get; set; }
+        public DateTime? UpdateDate { get; set; }
 
         public BaseEntity()
         {
-            Id = Guid.NewGuid();
+            if (Id == null)
+            {
+                Id = Guid.NewGuid();
+            }            
         }
     }
 }

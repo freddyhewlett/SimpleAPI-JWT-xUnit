@@ -50,9 +50,5 @@
 		<ProjectReference Include="..\..\Infra\APIInfra\APIInfra.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Configuration\" />
-	</ItemGroup>
-
 
 </Project>

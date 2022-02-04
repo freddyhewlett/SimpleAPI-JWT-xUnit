@@ -39,7 +39,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route("{id}", Name = "GetById")]
         public async Task<IActionResult> GetById(Guid id)
         {
             if (!ModelState.IsValid)
@@ -72,6 +72,33 @@ namespace WebAPI.Controllers
                 if (result != null)
                 {
                     return Created(new Uri(Url.Link("GetById", new {Id = result.Id })), result);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (ArgumentException e)
+            {
+
+                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody]User user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                var result = await _userService.Put(user);
+                if (result != null)
+                {
+                    return Ok(result);
                 }
                 else
                 {

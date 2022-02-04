@@ -25,6 +25,9 @@ namespace APIInfra.Repositories
             {
                 _dataSet.Add(item);
 
+                item.CreateDate = DateTime.Now;
+                _dataSet.Add(item);
+
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -39,7 +42,7 @@ namespace APIInfra.Repositories
         {
             try
             {
-                var result = await _dataSet.FirstOrDefaultAsync(u => u.Id == id);
+                var result = await _dataSet.SingleOrDefaultAsync(u => u.Id.Equals(id));
                 if (result == null) return false;
 
                 _dataSet.Remove(result);
@@ -71,7 +74,7 @@ namespace APIInfra.Repositories
         {
             try
             {
-                return await _dataSet.FirstOrDefaultAsync(u => u.Id == id);
+                return await _dataSet.SingleOrDefaultAsync(u => u.Id.Equals(id));
             }
             catch (Exception ex)
             {
@@ -83,8 +86,11 @@ namespace APIInfra.Repositories
         {
             try
             {
-                var result = await _dataSet.FirstOrDefaultAsync(u => u.Id == item.Id);
+                var result = await _dataSet.SingleOrDefaultAsync(u => u.Id.Equals(item.Id));
                 if (result == null) return null;
+
+                item.UpdateDate = DateTime.Now;
+                item.CreateDate = result.CreateDate;
 
                 _context.Entry(result).CurrentValues.SetValues(item);
 

@@ -16,24 +16,24 @@ namespace APIInfra.Data
 
         public DbSet<User> Users { get; set; }
 
-        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
-        {
-            foreach (var entity in ChangeTracker.Entries().Where(x => x.Entity.GetType().GetProperty("CreateDate") != null && x.Entity.GetType().GetProperty("UpdateDate") != null))
-            {
-                if (entity.State == EntityState.Added)
-                {
-                    entity.Property("CreateDate").CurrentValue = DateTime.Now;
-                    entity.Property("UpdateDate").IsModified = false;
-                }
-                if (entity.State == EntityState.Modified)
-                {
-                    entity.Property("UpdateDate").CurrentValue = DateTime.Now;
-                    entity.Property("CreateDate").IsModified = false;
-                }
-            }
+        //public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+        //{
+        //    foreach (var entity in ChangeTracker.Entries().Where(x => x.Entity.GetType().GetProperty("CreateDate") != null && x.Entity.GetType().GetProperty("UpdateDate") != null))
+        //    {
+        //        if (entity.State == EntityState.Added)
+        //        {
+        //            entity.Property("CreateDate").CurrentValue = DateTime.Now;
+        //            entity.Property("UpdateDate").IsModified = false;
+        //        }
+        //        if (entity.State == EntityState.Modified)
+        //        {
+        //            entity.Property("UpdateDate").CurrentValue = DateTime.Now;
+        //            entity.Property("CreateDate").IsModified = false;
+        //        }
+        //    }
 
-            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
-        }
+        //    return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
