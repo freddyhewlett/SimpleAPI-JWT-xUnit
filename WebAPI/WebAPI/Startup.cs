@@ -1,4 +1,3 @@
-using APIInfra.Data;
 using APIInfraCrossCutting.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -47,7 +46,9 @@ namespace WebAPI
                     }
                 });
             });
-            services.AddDbContext<APIDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("APIDbConection")));
+
+            services.AddAutoMapper(typeof(Startup));
+            services.AddDbContext<APIInfra.Data.APIDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("APIDbConection")));
 
         }
 

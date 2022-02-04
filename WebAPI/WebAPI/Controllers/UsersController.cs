@@ -1,27 +1,26 @@
-﻿using APIDomain.Interfaces.Services;
+﻿using APIDomain.Entities.User;
+using APIDomain.Interfaces.Services;
 using APIDomain.Interfaces.Services.User;
-using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using WebAPI.Configuration;
 
 namespace WebAPI.Controllers
 {
-    public class UsersController : MainController
+    [Route("api/{controller}")]
+    [ApiController]
+    public class UsersController : ControllerBase
     {
-        //private readonly IUserService _userService;
+        private readonly IUserService _userService;
 
-        //public UsersController(IMapper mapper, IUserService userService, INotifierService notifier)
-        //                            : base(mapper, notifier)
-        //{
-        //    _userService = userService;
-        //}
+        public UsersController(IUserService userService)
+        {
+            _userService = userService;
+        }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromServices]IUserService service)
+        public async Task<IActionResult> GetAll()
         {
             if (!ModelState.IsValid)
             {
@@ -30,7 +29,7 @@ namespace WebAPI.Controllers
 
             try
             {
-                return Ok(await service.GetAll());
+                return Ok(await _userService.GetAll());
             }
             catch (ArgumentException e)
             {
@@ -38,6 +37,52 @@ namespace WebAPI.Controllers
                 return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
             }
         }
-        
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                return Ok(await _userService.Get(id));
+            }
+            catch (ArgumentException e)
+            {
+
+                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody]User user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                var result = await _userService.Post(user);
+                if (result != null)
+                {
+                    return Created(new Uri(Url.Link("GetById", new {Id = result.Id })), result);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (ArgumentException e)
+            {
+
+                return StatusCode((int)HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
     }
 }

@@ -5,7 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace APIDomain.Services
+
+//TODO Criar projeto Service
+namespace APIServices.Services
 {
     public class UserService : IUserService
     {
