@@ -9,7 +9,8 @@ namespace APIInfraCrossCutting.DependencyInjection
     {
         public static void ConfigureDependenciesService(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddScoped<IUserService, UserService>();
+            serviceCollection.AddTransient<IUserService, UserService>();
+            serviceCollection.AddTransient<ILoginService, LoginService>();
             serviceCollection.AddScoped<INotifierService, NotifierService>();
         }
     }
