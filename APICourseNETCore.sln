@@ -14,7 +14,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI\Web
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIInfraCrossCutting", "InfraCrossCutting\APIInfraCrossCutting\APIInfraCrossCutting.csproj", "{6E5F84D2-68DE-4171-96BB-1D2ED76153B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIServices", "Services\APIServices\APIServices.csproj", "{56AF91DB-5360-474C-AD8C-DDE4AB8C3A97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIServices", "Services\APIServices\APIServices.csproj", "{56AF91DB-5360-474C-AD8C-DDE4AB8C3A97}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{14CCF198-4D91-488B-B91A-8715B72B37DF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{92FC2B99-3158-414C-BDC9-855DD26D5041}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{48BA78F6-7583-4619-B920-5E4C968194A8} = {14CCF198-4D91-488B-B91A-8715B72B37DF}
+		{C1AA8695-4667-489E-91E1-11DB2FA02E14} = {14CCF198-4D91-488B-B91A-8715B72B37DF}
+		{EE31DA98-2C0B-4EE0-97AD-0933570D2AC2} = {14CCF198-4D91-488B-B91A-8715B72B37DF}
+		{6E5F84D2-68DE-4171-96BB-1D2ED76153B4} = {14CCF198-4D91-488B-B91A-8715B72B37DF}
+		{56AF91DB-5360-474C-AD8C-DDE4AB8C3A97} = {14CCF198-4D91-488B-B91A-8715B72B37DF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {18C9A66F-0727-42A6-BC60-E586C654B743}
