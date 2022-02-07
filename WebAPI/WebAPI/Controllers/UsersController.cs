@@ -1,4 +1,5 @@
-﻿using APIDomain.Entities.User;
+﻿using APIDomain.DTOs.User;
+using APIDomain.Entities.User;
 using APIDomain.Interfaces.Services.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -62,7 +63,7 @@ namespace WebAPI.Controllers
 
         [Authorize("Bearer")]
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]User user)
+        public async Task<IActionResult> Post([FromBody]UserDto user)
         {
             if (!ModelState.IsValid)
             {
@@ -90,7 +91,7 @@ namespace WebAPI.Controllers
 
         [Authorize("Bearer")]
         [HttpPut]
-        public async Task<IActionResult> Put([FromBody]User user)
+        public async Task<IActionResult> Put([FromBody]UserDto user)
         {
             if (!ModelState.IsValid)
             {
