@@ -1,5 +1,6 @@
 ﻿using APIDomain.DTOs;
 using APIDomain.Interfaces.Services.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Net;
@@ -18,6 +19,7 @@ namespace WebAPI.Controllers
             _loginService = loginService;
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<object> Login([FromBody]LoginDto login)
         {

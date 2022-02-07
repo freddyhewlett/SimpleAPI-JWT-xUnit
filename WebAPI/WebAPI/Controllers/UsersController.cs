@@ -1,6 +1,6 @@
 ﻿using APIDomain.Entities.User;
-using APIDomain.Interfaces.Services;
 using APIDomain.Interfaces.Services.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Net;
@@ -19,6 +19,7 @@ namespace WebAPI.Controllers
             _userService = userService;
         }
 
+        [Authorize("Bearer")]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -38,6 +39,7 @@ namespace WebAPI.Controllers
             }
         }
 
+        [Authorize("Bearer")]
         [HttpGet]
         [Route("{id}", Name = "GetById")]
         public async Task<IActionResult> GetById(Guid id)
@@ -58,6 +60,7 @@ namespace WebAPI.Controllers
             }
         }
 
+        [Authorize("Bearer")]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]User user)
         {
@@ -85,6 +88,7 @@ namespace WebAPI.Controllers
             }
         }
 
+        [Authorize("Bearer")]
         [HttpPut]
         public async Task<IActionResult> Put([FromBody]User user)
         {
@@ -112,6 +116,7 @@ namespace WebAPI.Controllers
             }
         }
 
+        [Authorize("Bearer")]
         [HttpDelete]
         [Route("{id}")]
         public async Task<IActionResult> Delete(Guid id)
