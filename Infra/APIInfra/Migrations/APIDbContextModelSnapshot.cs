@@ -47,6 +47,16 @@ namespace APIInfra.Migrations
                         .HasFilter("[Email] IS NOT NULL");
 
                     b.ToTable("User");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("9dac10e0-0479-445f-8116-9756e957bccd"),
+                            CreateDate = new DateTime(2022, 2, 7, 16, 23, 42, 691, DateTimeKind.Local).AddTicks(2949),
+                            Email = "admin@mail.com",
+                            Name = "Admin",
+                            UpdateDate = new DateTime(2022, 2, 7, 16, 23, 42, 692, DateTimeKind.Local).AddTicks(3669)
+                        });
                 });
 #pragma warning restore 612, 618
         }

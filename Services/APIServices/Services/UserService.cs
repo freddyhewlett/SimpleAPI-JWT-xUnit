@@ -29,7 +29,7 @@ namespace APIServices.Services
 
         public async Task<UserDto> Get(Guid id)
         {
-            return _mapper.Map<UserDto>(await _repository.SelectAsync(id));
+            return _mapper.Map<UserDto>(await _repository.SelectAsync(id)) ?? new UserDto();
         }
 
         public async Task<IEnumerable<UserDto>> GetAll()

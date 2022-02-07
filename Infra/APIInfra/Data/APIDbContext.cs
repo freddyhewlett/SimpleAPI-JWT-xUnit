@@ -39,6 +39,15 @@ namespace APIInfra.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<User>(new UserMap().Configure);
+
+            modelBuilder.Entity<User>().HasData(new User
+            {
+                Id = Guid.NewGuid(),
+                Name = "Admin",
+                Email = "admin@mail.com",
+                CreateDate = DateTime.Now,
+                UpdateDate = DateTime.Now
+            });
         }
     }
 }
