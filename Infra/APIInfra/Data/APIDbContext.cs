@@ -40,6 +40,7 @@ namespace APIInfra.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<User>(new UserMap().Configure);
 
+            //Seed de administrador na migration do banco de dados
             modelBuilder.Entity<User>().HasData(new User
             {
                 Id = Guid.NewGuid(),
