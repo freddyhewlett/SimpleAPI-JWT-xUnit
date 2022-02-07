@@ -51,7 +51,7 @@ namespace APIServices.Services
                                                   new Claim(JwtRegisteredClaimNames.UniqueName, login.Email)
                                               });
                     DateTime createDate = DateTime.Now;
-                    DateTime expirationDate = createDate + TimeSpan.FromSeconds(_tokenConfiguration.Seconds); //60 segundos
+                    DateTime expirationDate = createDate + TimeSpan.FromSeconds(_tokenConfiguration.Seconds); //120 segundos
 
                     var handler = new JwtSecurityTokenHandler();
                     string token = CreateToken(identity, createDate, expirationDate, handler);

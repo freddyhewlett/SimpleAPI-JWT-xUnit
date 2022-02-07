@@ -33,11 +33,11 @@ namespace WebAPI
             var signingConfigurations = new SigningConfiguration();
             services.AddSingleton(signingConfigurations);
 
-            var tokenConfigurations = new TokenConfiguration();
+            var tokenConfiguration = new TokenConfiguration();
             new ConfigureFromConfigurationOptions<TokenConfiguration>(
                 Configuration.GetSection("TokenConfiguration"))
-                     .Configure(tokenConfigurations);
-            services.AddSingleton(tokenConfigurations);
+                     .Configure(tokenConfiguration);
+            services.AddSingleton(tokenConfiguration);
 
             services.AddAuthentication(authOptions =>
             {
@@ -47,8 +47,8 @@ namespace WebAPI
             {
                 var paramsValidation = bearerOptions.TokenValidationParameters;
                 paramsValidation.IssuerSigningKey = signingConfigurations.Key;
-                paramsValidation.ValidAudience = tokenConfigurations.Audience;
-                paramsValidation.ValidIssuer = tokenConfigurations.Issuer;
+                paramsValidation.ValidAudience = tokenConfiguration.Audience;
+                paramsValidation.ValidIssuer = tokenConfiguration.Issuer;
 
                 // Valida a assinatura de um token recebido
                 paramsValidation.ValidateIssuerSigningKey = true;
