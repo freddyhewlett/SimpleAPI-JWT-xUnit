@@ -1,21 +1,25 @@
-﻿using APIDomain.Entities.User;
+﻿using APIDomain.DTOs.User;
+using APIDomain.Entities.User;
 using APIDomain.Interfaces.Repositories;
 using APIDomain.Interfaces.Services.User;
+using APIDomain.Models;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 
-//TODO Criar projeto Service
 namespace APIServices.Services
 {
     public class UserService : IUserService
     {
         private readonly IBaseRepository<User> _repository;
+        private readonly IMapper _mapper;
 
-        public UserService(IBaseRepository<User> repository)
+        public UserService(IBaseRepository<User> repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         public async Task<bool> Delete(Guid id)
@@ -23,24 +27,28 @@ namespace APIServices.Services
             return await _repository.DeleteAsync(id);
         }
 
-        public async Task<User> Get(Guid id)
+        public async Task<UserDto> Get(Guid id)
         {
-            return await _repository.SelectAsync(id);
+            return _mapper.Map<UserDto>(await _repository.SelectAsync(id));
         }
 
-        public async Task<IEnumerable<User>> GetAll()
+        public async Task<IEnumerable<UserDto>> GetAll()
         {
-            return await _repository.SelectAllAsync();
+            return _mapper.Map<IEnumerable<UserDto>>(await _repository.SelectAllAsync());
         }
 
-        public async Task<User> Post(User user)
+        public async Task<UserDtoCreateResult> Post(UserDto user)
         {
-            return await _repository.InsertAsync(user);
+            var model = _mapper.Map<UserModel>(user);
+            var entity = _mapper.Map<User>(model);
+            return _mapper.Map<UserDtoCreateResult>(await _repository.InsertAsync(entity));
         }
 
-        public async Task<User> Put(User user)
+        public async Task<UserDtoUpdateResult> Put(UserDto user)
         {
-            return await _repository.UpdateAsync(user);
+            var model = _mapper.Map<UserModel>(user);
+            var entity = _mapper.Map<User>(model);
+            return _mapper.Map<UserDtoUpdateResult>(await _repository.UpdateAsync(entity));
         }
     }
 }
