@@ -146,6 +146,17 @@ namespace WebAPI
             {
                 endpoints.MapControllers();
             });
+
+            if (Environment.GetEnvironmentVariable("MIGRATION").ToLower() == "APLICAR".ToLower())
+            {
+                using (var service = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+                {
+                    using (var context = service.ServiceProvider.GetService<APIInfra.Data.APIDbContext>())
+                    {
+                        context.Database.Migrate();
+                    }
+                };
+            }
         }
     }
 }

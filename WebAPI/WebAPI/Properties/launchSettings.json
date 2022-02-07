@@ -14,7 +14,8 @@
       "launchBrowser": true,
       "launchUrl": "index.html",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "MIGRATION": "APLICAR"
       }
     },
     "WebAPI": {
@@ -23,7 +24,8 @@
       "launchUrl": "index.html",
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "MIGRATION": "APLICAR"
       }
     }
   }
