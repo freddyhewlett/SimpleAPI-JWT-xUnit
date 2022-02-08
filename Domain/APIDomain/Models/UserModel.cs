@@ -32,7 +32,7 @@ namespace APIDomain.Models
             get { return _creatDate; }
             set { _creatDate = value == null ? DateTime.Now : value; }
         }
-        public DateTime Updatedate
+        public DateTime UpdateDate
         {
             get { return _updateDate; }
             set { _updateDate = value; }
