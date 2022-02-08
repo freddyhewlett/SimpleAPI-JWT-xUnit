@@ -62,15 +62,15 @@ namespace APIServiceTest.User
             userDtoUpdate = new UserDtoUpdate()
             {
                 Id = UserId,
-                Name = UserName,
-                Email = UserEmail
+                Name = UserNameModified,
+                Email = UserEmailModified
             };
 
             userDtoUpdateResult = new UserDtoUpdateResult()
             {
                 Id = UserId,
-                Name = UserName,
-                Email = UserEmail,
+                Name = UserNameModified,
+                Email = UserEmailModified,
                 UpdateDate = DateTime.Now
             };
         }
