@@ -9,7 +9,7 @@ using Xunit;
 
 namespace APIInfraTest
 {
-    public class UserCompleteCrud : BaseTest, IClassFixture<DbTest>
+    public class UserCompleteCrud : BaseTestInfra, IClassFixture<DbTest>
     {
         private ServiceProvider _serviceProvider;
 

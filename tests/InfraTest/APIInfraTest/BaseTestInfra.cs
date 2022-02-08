@@ -5,9 +5,9 @@ using System;
 
 namespace APIInfraTest
 {
-    public abstract class BaseTest
+    public abstract class BaseTestInfra
     {
-        public BaseTest()
+        public BaseTestInfra()
         {
         }
     }
